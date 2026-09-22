@@ -1,18 +1,52 @@
 ---
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
 import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Portfolio de Cédric Hoareau, étudiant en informatique, science des données et intelligence artificielle.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Ingeniir</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <meta name="description" content={description} />
+    <meta name="author" content="Cédric Hoareau" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta name="theme-color" content="#E8DFC8" />
+
+    <title>{title}</title>
+  </head>
+
+  <body class="flex min-h-screen flex-col bg-sand-200 font-sans text-charcoal antialiased">
+    <a
+      href="#main-content"
+      class="fixed left-4 top-4 z-100 -translate-y-24 rounded-lg bg-forest-700 px-4 py-3 font-semibold text-sand-50 transition-transform focus:translate-y-0"
+    >
+      Aller au contenu principal
+    </a>
+
+    <Header />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
 </html>
