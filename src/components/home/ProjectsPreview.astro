@@ -1,0 +1,77 @@
+---
+import { featuredProjects } from "../../data/projects";
+---
+
+<section
+  id="projets"
+  class="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+  aria-labelledby="projects-title"
+>
+  <div
+    class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+  >
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
+        Mes réalisations
+      </p>
+
+      <h2
+        id="projects-title"
+        class="mt-4 text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl"
+      >
+        Des projets pour apprendre en construisant.
+      </h2>
+
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-olive-gray">
+        Chaque projet est l’occasion d’expérimenter de nouveaux outils,
+        de rencontrer des difficultés et de progresser en développant
+        une solution concrète.
+      </p>
+    </div>
+
+    <a
+      href="/projets"
+      class="shrink-0 font-bold text-forest-700 underline decoration-forest-700/30 underline-offset-4 transition-colors hover:text-forest-900"
+    >
+      Voir tous les projets
+      <span class="ml-1" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="mt-12 grid gap-6 md:grid-cols-2">
+    {
+      featuredProjects.map((project) => (
+        <article class="group flex h-full flex-col rounded-3xl border border-sand-400 bg-sand-100 p-7 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)] sm:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <p class="text-sm font-bold text-forest-700">
+              {project.category}
+            </p>
+
+            <span class="rounded-full border border-sand-400 bg-sand-200 px-3 py-1 text-xs font-semibold text-olive-gray">
+              {project.status}
+            </span>
+          </div>
+
+          <h3 class="mt-8 text-2xl font-extrabold tracking-tight text-charcoal">
+            {project.title}
+          </h3>
+
+          <p class="mt-4 flex-1 leading-7 text-olive-gray">
+            {project.description}
+          </p>
+
+          <ul
+            class="mt-7 flex flex-wrap gap-2"
+            aria-label={`Technologies utilisées pour ${project.title}`}
+          >
+            {project.technologies.map((technology) => (
+              <li class="rounded-full bg-forest-700/10 px-3 py-1.5 text-sm font-semibold text-forest-800">
+                {technology}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>
