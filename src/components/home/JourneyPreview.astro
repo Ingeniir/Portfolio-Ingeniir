@@ -1,0 +1,74 @@
+---
+const journeyItems = [
+  {
+    label: "Découverte",
+    title: "Mes premiers pas avec Python",
+    description:
+      "Je découvre la programmation en aidant mon frère avec ses cours de NSI. Cette première expérience m’encourage à continuer d’apprendre de manière autonome.",
+  },
+  {
+    label: "Aujourd’hui",
+    title: "Licence MIASHS à l’Université de La Réunion",
+    description:
+      "J’étudie notamment l’algèbre linéaire, les bases de données, l’analyse mathématique, la théorie des jeux et l’analyse de données.",
+  },
+  {
+    label: "Prochaine étape",
+    title: "Approfondir l’intelligence artificielle",
+    description:
+      "Je souhaite poursuivre mon parcours dans l’intelligence artificielle et la science des données tout en travaillant sur des problèmes concrets.",
+  },
+];
+---
+
+<section
+  id="parcours"
+  class="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+  aria-labelledby="journey-title"
+>
+  <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
+        Mon parcours
+      </p>
+
+      <h2
+        id="journey-title"
+        class="mt-4 text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl"
+      >
+        Un chemin construit par la curiosité.
+      </h2>
+
+      <p class="mt-6 text-lg leading-8 text-olive-gray">
+        Mon intérêt pour l’informatique est arrivé presque par hasard.
+        Depuis, chaque apprentissage et chaque projet contribuent à préciser
+        la direction que je souhaite donner à mon parcours.
+      </p>
+    </div>
+
+    <ol class="relative border-l border-forest-700/25">
+      {
+        journeyItems.map((item) => (
+          <li class="relative pb-12 pl-9 last:pb-0">
+            <span
+              class="absolute -left-[7px] top-1.5 size-3.5 rounded-full border-4 border-sand-200 bg-forest-700"
+              aria-hidden="true"
+            />
+
+            <p class="text-sm font-bold uppercase tracking-wider text-forest-700">
+              {item.label}
+            </p>
+
+            <h3 class="mt-2 text-xl font-extrabold text-charcoal">
+              {item.title}
+            </h3>
+
+            <p class="mt-3 max-w-2xl leading-7 text-olive-gray">
+              {item.description}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

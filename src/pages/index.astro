@@ -1,20 +1,18 @@
 ---
+import AboutPreview from "../components/home/AboutPreview.astro";
+import ContactCallout from "../components/home/ContactCallout.astro";
+import Hero from "../components/home/Hero.astro";
+import JourneyPreview from "../components/home/JourneyPreview.astro";
+import ProjectsPreview from "../components/home/ProjectsPreview.astro";
+import SkillsPreview from "../components/home/SkillsPreview.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<section class="mx-auto max-w-6xl px-5
-	py-24">
-		<p class="text-sm font-semibold uppercase tracking-widest text-forest-600">
-			Étudiant en L3 MIASHS
-		</p>
-
-		<h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-6xl">
-			Portfolio en construction
-		</h1>
-
-		<p class="mt-6 max-w-2xl text-lg leading-8 text-olive-gray">
-			Les fondations du portfolio sont actuellement en cours de développement.
-		</p>
-	</section>
+	<Hero />
+	<AboutPreview />
+	<ProjectsPreview />
+	<SkillsPreview />
+	<JourneyPreview />
+	<ContactCallout />
 </Layout>
