@@ -1,0 +1,20 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-sand-400/80 bg-sand-100/50">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm text-olive-gray sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>
+      © {currentYear} Cédric Hoareau — Ingeniir
+    </p>
+
+    <p>
+      Construit avec{" "}
+      <span class="font-semibold text-charcoal">Astro</span>
+      {" "}et{" "}
+      <span class="font-semibold text-charcoal">Tailwind {" "}CSS</span>.
+    </p>
+  </div>
+</footer>

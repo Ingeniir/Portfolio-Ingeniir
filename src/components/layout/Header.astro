@@ -1,0 +1,79 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navigationItems = [
+  {
+    label: "Accueil",
+    href: "/",
+  },
+  {
+    label: "Projets",
+    href: "/projets",
+  },
+  {
+    label: "À propos",
+    href: "/a-propos",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
+
+const isCurrentPage = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath.startsWith(href);
+};
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-sand-400/80 bg-sand-200/90 backdrop-blur-md"
+>
+  <nav
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-4 sm:min-h-18 sm:flex-row sm:items-center sm:justify-between sm:py-0"
+    aria-label="Navigation principale"
+  >
+    <a
+      href="/"
+      class="w-fit text-xl font-extrabold tracking-tight text-charcoal transition-colors hover:text-forest-600"
+      aria-label="Ingeniir — Retour à l'accueil"
+    >
+      Ingeniir<span class="text-forest-600">.</span>
+    </a>
+
+    <ul class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-semibold">
+      {
+        navigationItems.map((item) => {
+          const active = isCurrentPage(item.href);
+
+          return (
+            <li>
+              <a
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                class:list={[
+                  "relative rounded-sm py-1 transition-colors",
+                  active
+                    ? "text-forest-700"
+                    : "text-charcoal hover:text-forest-600",
+                ]}
+              >
+                {item.label}
+
+                {active && (
+                  <span
+                    class="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-forest-600"
+                    aria-hidden="true"
+                  />
+                )}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</header>
