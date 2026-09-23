@@ -1,5 +1,6 @@
 ---
 import { featuredProjects } from "../../data/projects";
+import ProjectCard from "../../components/projects/ProjectCard.astro";
 ---
 
 <section
@@ -41,36 +42,7 @@ import { featuredProjects } from "../../data/projects";
   <div class="mt-12 grid gap-6 md:grid-cols-2">
     {
       featuredProjects.map((project) => (
-        <article class="group flex h-full flex-col rounded-3xl border border-sand-400 bg-sand-100 p-7 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)] sm:p-8">
-          <div class="flex flex-wrap items-center justify-between gap-3">
-            <p class="text-sm font-bold text-forest-700">
-              {project.category}
-            </p>
-
-            <span class="rounded-full border border-sand-400 bg-sand-200 px-3 py-1 text-xs font-semibold text-olive-gray">
-              {project.status}
-            </span>
-          </div>
-
-          <h3 class="mt-8 text-2xl font-extrabold tracking-tight text-charcoal">
-            {project.title}
-          </h3>
-
-          <p class="mt-4 flex-1 leading-7 text-olive-gray">
-            {project.description}
-          </p>
-
-          <ul
-            class="mt-7 flex flex-wrap gap-2"
-            aria-label={`Technologies utilisées pour ${project.title}`}
-          >
-            {project.technologies.map((technology) => (
-              <li class="rounded-full bg-forest-700/10 px-3 py-1.5 text-sm font-semibold text-forest-800">
-                {technology}
-              </li>
-            ))}
-          </ul>
-        </article>
+        <ProjectCard project={project} />
       ))
     }
   </div>
