@@ -9,6 +9,7 @@ import ProjectCard from "../../components/projects/ProjectCard.astro";
   aria-labelledby="projects-title"
 >
   <div
+    data-reveal
     class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
   >
     <div>
@@ -39,7 +40,7 @@ import ProjectCard from "../../components/projects/ProjectCard.astro";
     </a>
   </div>
 
-  <div class="mt-12 grid gap-6 md:grid-cols-2">
+  <div data-reveal class="mt-12 grid gap-6 md:grid-cols-2">
     {
       featuredProjects.map((project) => (
         <ProjectCard project={project} />
