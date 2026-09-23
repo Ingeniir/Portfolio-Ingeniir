@@ -1,20 +1,63 @@
 ---
+import { contactLinks } from "../../data/contact";
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-sand-400/80 bg-sand-100/50">
-  <div
-    class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm text-olive-gray sm:flex-row sm:items-center sm:justify-between"
-  >
-    <p>
-      © {currentYear} Cédric Hoareau — Ingeniir
-    </p>
+  <div class="mx-auto max-w-6xl px-5 py-14">
+    <div class="flex flex-col gap-10 sm:flex-row sm:justify-between">
+      <div class="max-w-sm">
+        <p class="text-xl font-extrabold tracking-tight text-charcoal">
+          Ingeniir<span class="text-forest-600">.</span>
+        </p>
 
-    <p>
-      Construit avec{" "}
-      <span class="font-semibold text-charcoal">Astro</span>
-      {" "}et{" "}
-      <span class="font-semibold text-charcoal">Tailwind {" "}CSS</span>.
-    </p>
+        <p class="mt-4 leading-7 text-olive-gray">
+          Cédric Hoareau, étudiant en informatique et science des données
+          à l'Université de La Réunion.
+        </p>
+      </div>
+
+      <nav aria-label="Liens de contact">
+        <p class="text-sm font-bold uppercase tracking-wider text-forest-700">
+          Me suivre
+        </p>
+
+        <ul class="mt-5 space-y-3">
+          {
+            contactLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  class="font-semibold text-charcoal transition-colors hover:text-forest-700"
+                >
+                  {link.label}
+                  <span class="ml-1" aria-hidden="true">
+                    {link.external ? "↗" : ""}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-2 border-t border-sand-400/80 pt-8 text-sm text-olive-gray sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {currentYear} Cédric Hoareau — Ingeniir</p>
+
+      <p>
+        Construit avec{" "}
+        <span class="font-semibold text-charcoal">Astro</span>
+        {" "}
+        et
+        {" "}
+        <span class="font-semibold text-charcoal">Tailwind CSS</span>.
+      </p>
+    </div>
   </div>
 </footer>
