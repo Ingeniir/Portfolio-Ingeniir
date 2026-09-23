@@ -12,7 +12,10 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout>
+<Layout
+  title={project.title}
+  description={project.summary}
+>
   <article>
     <header class="border-b border-sand-400/70 bg-sand-100/60">
       <div class="mx-auto max-w-4xl px-5 py-16 sm:py-20">
