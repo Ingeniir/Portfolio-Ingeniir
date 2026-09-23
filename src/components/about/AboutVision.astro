@@ -1,0 +1,65 @@
+---
+import { visionDomains } from "../../data/about";
+---
+
+<section
+  class="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+  aria-labelledby="vision-title"
+>
+  <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
+    Ma direction
+  </p>
+
+  <h2
+    id="vision-title"
+    class="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl"
+  >
+    Mettre la donnée au service de projets concrets.
+  </h2>
+
+  <div class="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-olive-gray">
+    <p>
+      Mon objectif est de contribuer à des projets utiles, aussi bien pour
+      des entreprises internationales que pour celles de La Réunion. Je
+      souhaite aider ces structures à mieux comprendre leurs données, à
+      automatiser ce qui peut l'être et à s'appuyer sur l'intelligence
+      artificielle lorsque le problème le justifie réellement.
+    </p>
+
+    <p>
+      Les sujets qui m'attirent le plus sont ceux ancrés dans le territoire :
+      l'étude de la faune et de la flore, la volcanologie, l'environnement ou
+      encore la gestion de données géographiques. Je ne suis pas spécialiste
+      de ces domaines, et je ne prétends pas l'être.
+    </p>
+
+    <p>
+      C'est précisément ce qui me motive : mon métier consistera à m'adapter,
+      à apprendre le vocabulaire et les contraintes de chaque secteur, puis à
+      traduire un besoin métier en solution technique. Comprendre le problème
+      de l'autre me semble aussi important que maîtriser l'outil.
+    </p>
+
+    <p>
+      À plus long terme, j'aimerais créer ma propre structure à La Réunion,
+      afin d'accompagner les entreprises locales par l'analyse de données,
+      l'intelligence artificielle et le développement d'outils sur mesure.
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    {
+      visionDomains.map((domain) => (
+        <article class="rounded-3xl border border-sand-400 bg-sand-100 p-7">
+          <h3 class="text-xl font-extrabold text-charcoal">
+            {domain.title}
+          </h3>
+
+          <p class="mt-3 leading-7 text-olive-gray">
+            {domain.description}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>
