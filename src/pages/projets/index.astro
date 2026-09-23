@@ -1,23 +1,48 @@
 ---
+import ProjectCard from "../../components/projects/ProjectCard.astro";
 import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
 ---
 
-<Layout
-  title="Projets — Cédric Hoareau | Ingeniir"
-  description="Découvrez les projets de Cédric Hoareau en développement logiciel, analyse de données et intelligence artificielle."
->
+<Layout>
   <section class="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-    <p class="text-sm font-semibold uppercase tracking-widest text-forest-600">
+    <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
       Mes réalisations
     </p>
 
-    <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl">
+    <h1
+      class="mt-4 max-w-4xl text-5xl font-extrabold leading-[1.08] tracking-[-0.04em] text-charcoal sm:text-6xl"
+    >
       Projets
     </h1>
 
     <p class="mt-6 max-w-2xl text-lg leading-8 text-olive-gray">
-      Cette page présentera les projets qui accompagnent mon apprentissage
-      en développement, analyse de données et intelligence artificielle.
+      Voici les projets qui accompagnent actuellement mon apprentissage.
+      Chacun est présenté avec sa démarche, ses résultats et ses limites,
+      afin de montrer ma manière de travailler plutôt qu’une simple liste
+      de technologies.
     </p>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <ProjectCard project={project} />
+        ))
+      }
+    </div>
+
+    <aside
+      class="mt-10 rounded-3xl border border-dashed border-forest-700/30 bg-sand-100/60 p-7 sm:p-8"
+    >
+      <h2 class="text-xl font-extrabold text-charcoal">
+        D’autres projets arrivent
+      </h2>
+
+      <p class="mt-3 max-w-2xl leading-7 text-olive-gray">
+        Je travaille actuellement sur de nouveaux projets en développement
+        et en intelligence artificielle. Ils seront publiés ici dès qu’ils
+        seront suffisamment aboutis pour être présentés honnêtement.
+      </p>
+    </aside>
   </section>
 </Layout>
