@@ -6,7 +6,7 @@ export interface ContactLink {
   external: boolean;
 }
 
-export const email = "ton.adresse@exemple.com";
+export const email = "hoareau.cedric97470@gmail.com";
 
 export const contactLinks: ContactLink[] = [
   {
@@ -21,8 +21,8 @@ export const contactLinks: ContactLink[] = [
     label: "LinkedIn",
     value: "Cédric Hoareau",
     description:
-      "Pour échanger de manière professionnelle et suivre l’évolution de mon parcours.",
-    href: "https://www.linkedin.com/in/ton-profil",
+      "Pour échanger de manière professionnelle et suivre l'évolution de mon parcours.",
+    href: "https://www.linkedin.com/in/c%C3%A9dric-hoareau/",
     external: true,
   },
   {
@@ -30,7 +30,7 @@ export const contactLinks: ContactLink[] = [
     value: "Ingeniir",
     description:
       "Pour consulter mon code, mes expérimentations et mes projets en cours.",
-    href: "https://github.com/ton-utilisateur",
+    href: "https://github.com/Ingeniir",
     external: true,
   },
 ];
@@ -42,7 +42,7 @@ export const internshipDetails = [
   },
   {
     label: "Domaines",
-    value: "Développement, analyse de données et intelligence artificielle",
+    value: "Développement, analyse de données, intelligence artificielle, économétrie et marketing analytics/études de marché",
   },
   {
     label: "Localisation",
@@ -50,6 +50,6 @@ export const internshipDetails = [
   },
   {
     label: "Période",
-    value: "À préciser selon le calendrier universitaire",
+    value: "Pour les vacances d'hiver, c'est-à-dire pour le mois de Décembre. Sinon durant ma période scolaire mais reste à voir selon mon emploi du temps.",
   },
 ];

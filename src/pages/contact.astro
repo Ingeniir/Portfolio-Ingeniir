@@ -1,24 +1,130 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { contactLinks, internshipDetails } from "../data/contact";
 ---
 
-<Layout
-  title="Contact — Cédric Hoareau | Ingeniir"
-  description="Contactez Cédric Hoareau pour échanger autour d'une opportunité de stage, d'un projet ou de l'intelligence artificielle."
->
+<Layout>
   <section class="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-    <p class="text-sm font-semibold uppercase tracking-widest text-forest-600">
-      Échangeons
-    </p>
+    <div class="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
+          Échangeons
+        </p>
 
-    <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl">
-      Contact
-    </h1>
+        <h1
+          class="mt-4 max-w-2xl text-5xl font-extrabold leading-[1.08] tracking-[-0.04em] text-charcoal sm:text-6xl"
+        >
+          Parlons de votre
+          <span class="text-forest-700">projet</span>.
+        </h1>
 
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-olive-gray">
-      Je recherche actuellement un stage dans le cadre de ma troisième année
-      de licence MIASHS. Mes coordonnées et mes réseaux professionnels seront
-      bientôt disponibles sur cette page.
-    </p>
+        <p class="mt-7 max-w-xl text-lg leading-8 text-olive-gray">
+          Je recherche actuellement un stage dans le cadre de ma troisième
+          année de licence MIASHS. Je reste également ouvert à toute
+          discussion autour d'un projet, d'une collaboration ou d'un sujet
+          lié à la donnée et à l'intelligence artificielle.
+        </p>
+
+        <ul class="mt-12 space-y-4">
+          {
+            contactLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  class="group flex flex-col gap-2 rounded-3xl border border-sand-400 bg-sand-100 p-7 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)]"
+                >
+                  <span class="text-sm font-bold uppercase tracking-wider text-forest-700">
+                    {link.label}
+                  </span>
+
+                  <span class="flex items-center gap-2 text-xl font-extrabold text-charcoal">
+                    {link.value}
+
+                    <span
+                      class="inline-block transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      {link.external ? "↗" : "→"}
+                    </span>
+                  </span>
+
+                  <span class="leading-7 text-olive-gray">
+                    {link.description}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="rounded-3xl border border-sand-400 bg-sand-100 p-7 sm:p-8">
+          <div class="flex items-center gap-2">
+            <span
+              class="size-2 rounded-full bg-forest-600"
+              aria-hidden="true"
+            ></span>
+
+            <p class="text-sm font-bold uppercase tracking-wider text-forest-700">
+              Recherche en cours
+            </p>
+          </div>
+
+          <h2 class="mt-4 text-2xl font-extrabold text-charcoal">
+            Stage de L3
+          </h2>
+
+          <dl class="mt-6 space-y-5">
+            {
+              internshipDetails.map((detail) => (
+                <div>
+                  <dt class="text-sm font-semibold text-olive-gray">
+                    {detail.label}
+                  </dt>
+                  <dd class="mt-1 font-semibold leading-7 text-charcoal">
+                    {detail.value}
+                  </dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+
+        <div class="rounded-3xl bg-forest-700 p-7 text-sand-50 sm:p-8">
+          <h2 class="text-2xl font-extrabold">
+            Mon CV
+          </h2>
+
+          <p class="mt-3 leading-7 text-sand-100">
+            Retrouvez mon parcours, mes compétences et ma formation dans un
+            document synthétique.
+          </p>
+
+          <a
+            href="/documents/CV-Cedric-Hoareau.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-sand-50 px-6 py-3 font-bold text-forest-900 transition-colors hover:bg-sand-200"
+          >
+            Consulter mon CV
+            <span class="ml-2" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="rounded-3xl border border-dashed border-forest-700/30 p-7">
+          <h2 class="text-lg font-extrabold text-charcoal">
+            Localisation
+          </h2>
+
+          <p class="mt-3 leading-7 text-olive-gray">
+            Saint-Denis, La Réunion. Je suis également disponible pour des
+            échanges et des missions à distance.
+          </p>
+        </div>
+      </aside>
+    </div>
   </section>
 </Layout>
