@@ -1,17 +1,18 @@
 ---
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import { buildTitle, site } from "../data/site";
 import "../styles/global.css";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
 }
 
-const {
-  title,
-  description = "Portfolio de Cédric Hoareau, étudiant en informatique, science des données et intelligence artificielle.",
-} = Astro.props;
+const { title, description = site.defaultDescription } = Astro.props;
+
+const pageTitle = buildTitle(title);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -24,19 +25,38 @@ const {
       content="width=device-width, initial-scale=1"
     />
 
+    <title>{pageTitle}</title>
+
     <meta name="description" content={description} />
-    <meta name="author" content="Cédric Hoareau" />
+    <meta name="author" content={site.author} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={site.themeColor} />
 
-    <meta name="theme-color" content="#E8DFC8" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <title>{title}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
 
-  <body class="flex min-h-screen flex-col bg-sand-200 font-sans text-charcoal antialiased">
+  <body
+    class="flex min-h-screen flex-col bg-sand-200 font-sans text-charcoal antialiased"
+  >
     <a
       href="#main-content"
-      class="fixed left-4 top-4 z-100 -translate-y-24 rounded-lg bg-forest-700 px-4 py-3 font-semibold text-sand-50 transition-transform focus:translate-y-0"
+      class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-forest-700 px-4 py-3 font-semibold text-sand-50 transition-transform focus:translate-y-0"
     >
       Aller au contenu principal
     </a>
