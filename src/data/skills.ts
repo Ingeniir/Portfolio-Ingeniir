@@ -50,3 +50,11 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ];
+
+export const learningSkills: string[] = [
+  "Machine learning",
+  "Statistiques",
+  "Probabilités",
+  "Deep learning",
+  "Intégration de MCP",
+];
