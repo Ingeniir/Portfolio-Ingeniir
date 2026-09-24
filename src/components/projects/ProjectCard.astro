@@ -9,7 +9,7 @@ const { project } = Astro.props;
 ---
 
 <article
-  class="group relative flex h-full flex-col rounded-3xl border border-sand-400 bg-sand-100 p-7 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)] sm:p-8"
+  class="group relative flex h-full min-w-0 flex-col rounded-3xl border border-sand-400 bg-sand-100 p-5 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)] sm:p-8"
 >
   <div class="flex flex-wrap items-center justify-between gap-3">
     <p class="text-sm font-bold text-forest-700">
@@ -23,7 +23,7 @@ const { project } = Astro.props;
     </span>
   </div>
 
-  <h3 class="mt-8 text-2xl font-extrabold tracking-tight text-charcoal">
+  <h3 class="mt-6 max-w-full wrap-break-word text-xl font-extrabold tracking-tight text-charcoal sm:mt-8 sm:text-2xl">
     <a
       href={`/projets/${project.slug}`}
       class="transition-colors after:absolute after:inset-0 hover:text-forest-700"
@@ -37,12 +37,12 @@ const { project } = Astro.props;
   </p>
 
   <ul
-    class="mt-7 flex flex-wrap gap-2"
+    class="mt-6 flex min-w-0 flex-wrap gap-2 sm:mt-7"
     aria-label={`Technologies utilisées pour ${project.title}`}
   >
     {
       project.technologies.slice(0, 5).map((technology) => (
-        <li class="rounded-full bg-forest-700/10 px-3 py-1.5 text-sm font-semibold text-forest-800">
+        <li class="max-w-full rounded-full wrap-break-word bg-forest-700/10 px-3 py-1.5 text-sm font-semibold text-forest-800">
           {technology}
         </li>
       ))

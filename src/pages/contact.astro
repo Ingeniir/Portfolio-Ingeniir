@@ -7,7 +7,7 @@ import { contactLinks, internshipDetails } from "../data/contact";
   title="Contact"
   description="Contactez-moi pour un stage de L3, un projet ou un échange autour de la donnée et de l’intelligence artificielle."
 >
-  <section class="mx-auto max-w-6xl px-5 py-20 sm:py-28">
+  <section class="page-container py-20 sm:py-28">
     <div class="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
       <div>
         <p class="text-sm font-bold uppercase tracking-[0.18em] text-forest-700">
@@ -15,7 +15,7 @@ import { contactLinks, internshipDetails } from "../data/contact";
         </p>
 
         <h1
-          class="mt-4 max-w-2xl text-5xl font-extrabold leading-[1.08] tracking-[-0.04em] text-charcoal sm:text-6xl"
+          class="display-title mt-4 text-charcoal"
         >
           Parlons de votre{" "}
           <span class="text-forest-700">projet</span>.
@@ -36,22 +36,28 @@ import { contactLinks, internshipDetails } from "../data/contact";
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
-                  class="group flex flex-col gap-2 rounded-3xl border border-sand-400 bg-sand-100 p-7 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)]"
+                  class="group flex min-w-0 flex-col gap-2 rounded-3xl border border-sand-400 bg-sand-100 p-5 transition duration-200 hover:-translate-y-1 hover:border-forest-700/40 hover:shadow-[0_18px_45px_rgba(23,25,20,0.08)] sm:p-7"
+
                 >
                   <span class="text-sm font-bold uppercase tracking-wider text-forest-700">
                     {link.label}
                   </span>
 
-                  <span class="flex items-center gap-2 text-xl font-extrabold text-charcoal">
-                    {link.value}
+                  <span
+                    class="flex min-w-0 items-start gap-2 text-lg font-extrabold text-charcoal sm:items-center sm:text-xl"
+                  >
+                    <span class="min-w-0 wrap-anywhere">
+                      {link.value}
+                    </span>
 
                     <span
-                      class="inline-block transition-transform group-hover:translate-x-1"
+                      class="shrink-0 transition-transform group-hover:translate-x-1"
                       aria-hidden="true"
                     >
                       {link.external ? "↗" : "→"}
                     </span>
                   </span>
+
 
                   <span class="leading-7 text-olive-gray">
                     {link.description}
@@ -76,7 +82,7 @@ import { contactLinks, internshipDetails } from "../data/contact";
             </p>
           </div>
 
-          <h2 class="mt-4 text-2xl font-extrabold text-charcoal">
+          <h2 class="section-title mt-4 text-charcoal">
             Stage de L3
           </h2>
 
