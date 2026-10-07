@@ -29,6 +29,7 @@ export const projects: Project[] = [
     status: "Terminé",
     category: "Machine learning",
     year: "2026",
+    repositoryUrl: "https://github.com/Ingeniir/titanic-project",
     technologies: [
       "Python",
       "pandas",
@@ -235,6 +236,134 @@ export const projects: Project[] = [
           "Étudier la calibration des probabilités",
           "Déployer le pipeline dans une application interactive avec Streamlit",
           "Automatiser l'entraînement et l'évaluation avec des scripts en ligne de commande",
+        ],
+      },
+    ],
+  },
+    {
+    slug: "qgis-mcp",
+    title: "QGIS MCP — Pilotage de QGIS par une IA via Model Context Protocol",
+    summary:
+      "Plugin QGIS et serveur MCP permettant à un assistant IA (Claude Desktop) de piloter QGIS de façon contrôlée : lecture de couches, analyses statistiques, géotraitements et écriture encadrée en base locale.",
+    description:
+      "Projet réalisé pour un bureau d'études souhaitant interroger et manipuler ses projets QGIS en langage naturel. L'architecture repose sur un serveur MCP en Python externe, un pont TCP local authentifié par jeton, et un plugin QGIS exposant un dispatcher de commandes. Chaque opération est déclarée, validée et journalisée : aucune exécution de code arbitraire, aucun SQL libre, aucune écriture sans confirmation explicite.",
+    status: "MVP fonctionnel",
+    category: "SIG / IA",
+    year: "2026",
+    technologies: [
+      "Python",
+      "PyQGIS",
+      "QGIS",
+      "Qt",
+      "Model Context Protocol",
+      "SQLite",
+      "GeoPackage",
+      "TCP / JSON",
+      "pytest",
+    ],
+    featured: true,
+    sections: [
+      {
+        title: "Contexte et objectif",
+        paragraphs: [
+          "Les équipes SIG passent beaucoup de temps sur des tâches répétitives : inspecter une couche, vérifier un SCR, croiser une table attributaire avec une base métier, produire une statistique descriptive. Ces opérations sont simples mais nécessitent de connaître l'interface QGIS et parfois d'écrire du PyQGIS.",
+          "L'objectif du projet était de permettre à un utilisateur non développeur de formuler sa demande en langage naturel et de laisser un assistant IA exécuter les opérations correspondantes directement dans QGIS, sans jamais sortir d'un périmètre d'actions autorisées.",
+        ],
+        bullets: [
+          "Réduire le temps passé sur les tâches d'inspection et de contrôle qualité",
+          "Garantir qu'aucune action destructive ne soit exécutée sans validation humaine",
+          "Rester entièrement local : aucune donnée métier ne quitte le poste",
+        ],
+      },
+      {
+        title: "Architecture",
+        paragraphs: [
+          "La chaîne est volontairement découpée en couches, afin d'isoler le protocole MCP de la logique métier et des appels PyQGIS.",
+          "Le serveur MCP tourne dans un interpréteur Python externe et communique en stdio avec le client. Il relaie les commandes vers le plugin QGIS via une socket TCP restreinte à 127.0.0.1 et protégée par un jeton de session régénéré à chaque démarrage. Côté plugin, un dispatcher valide la commande puis délègue à un service applicatif, lui-même adossé à des adaptateurs PyQGIS ou SQLite.",
+        ],
+        bullets: [
+          "Client MCP (Claude Desktop) → serveur MCP Python (stdio)",
+          "Serveur MCP → pont TCP local authentifié (127.0.0.1 + jeton)",
+          "Plugin QGIS → dispatcher de commandes → services applicatifs",
+          "Services → adaptateurs PyQGIS / SQLite → QGIS et GeoPackage",
+          "Session publiée dans un fichier local lu par le serveur au démarrage",
+        ],
+      },
+      {
+        title: "Sécurité et garde-fous",
+        paragraphs: [
+          "La principale contrainte du projet était de ne jamais laisser un modèle de langage exécuter du code libre sur le poste de l'utilisateur. Chaque capacité est donc explicitement déclarée côté plugin, et tout ce qui n'est pas déclaré est refusé par défaut.",
+        ],
+        bullets: [
+          "Aucun eval, exec ou commande système",
+          "Aucune requête SQL libre : uniquement des opérations paramétrées",
+          "Liste blanche d'algorithmes Processing autorisés",
+          "Sorties temporaires par défaut, écriture sur disque sur demande explicite",
+          "Confirmation obligatoire pour toute écriture ou modification de données",
+          "Contrôle du SCR : refus des calculs de distance sur un système géographique",
+          "Cycle d'édition explicite : ouverture, prévisualisation, validation ou annulation",
+        ],
+      },
+      {
+        title: "Fonctionnalités développées",
+        paragraphs: [
+          "Le plugin expose une quarantaine d'outils MCP regroupés par domaine fonctionnel, tous documentés et testés.",
+        ],
+        bullets: [
+          "Lecture de projet : inventaire des couches, métadonnées, capacités d'édition, SCR et unités",
+          "Inspection ciblée : récupération d'une entité, analyse de sa géométrie",
+          "Sélection : par identifiants, par expression QGIS, extraction de la sélection",
+          "Statistiques descriptives : résumés numériques et catégoriels",
+          "Coefficients statistiques : Pearson, Spearman, covariance, régression linéaire, coefficient de variation",
+          "Géotraitements : reprojection, correction de géométries, découpage, intersection, export",
+          "Champs : ajout de champ et calcul de champ encadrés",
+          "Base locale : inventaire, description de tables, diagnostic et exécution de jointures",
+          "Écriture contrôlée : création de table avec insertion transactionnelle, refus d'écrasement",
+          "Attachement dynamique d'un GeoPackage du projet comme base locale",
+        ],
+      },
+      {
+        title: "Qualité et tests",
+        paragraphs: [
+          "La logique métier a été écrite de manière indépendante de PyQGIS, ce qui permet de la tester sans lancer QGIS. Les adaptateurs sont isolés derrière des protocoles Python, remplacés par des doubles de test dans la suite unitaire.",
+          "Plus de 530 tests unitaires couvrent la validation des paramètres, les calculs statistiques, les règles de sécurité, la gestion transactionnelle et les cas d'erreur.",
+        ],
+        bullets: [
+          "Séparation stricte validation / calcul / accès aux données",
+          "Ports définis par des Protocol typés",
+          "Suite pytest exécutable hors environnement QGIS",
+          "Documentation technique et guide de recette livrés avec le projet",
+        ],
+      },
+      {
+        title: "Résultats",
+        paragraphs: [
+          "Le MVP est fonctionnel et livré avec sa documentation d'installation, de configuration et de dépannage. Un utilisateur peut décrire son besoin en langage naturel et obtenir le résultat dans QGIS, avec une trace lisible des opérations réalisées.",
+          "Les tâches d'inspection et de croisement de données qui demandaient plusieurs minutes de manipulation se résolvent désormais en une seule demande.",
+        ],
+      },
+      {
+        title: "Ce que j'ai appris",
+        paragraphs: [
+          "Ce projet m'a surtout appris à concevoir une interface sûre entre un modèle de langage et une application métier. La difficulté n'est pas de donner des capacités à l'IA, mais de les borner correctement et de rendre chaque action réversible et compréhensible.",
+        ],
+        bullets: [
+          "Conception d'outils MCP : nommage, description, schéma de paramètres",
+          "Architecture hexagonale appliquée à un plugin Qt",
+          "Contraintes d'un environnement Python embarqué dans QGIS",
+          "Importance de la confirmation humaine dans les flux automatisés",
+        ],
+      },
+      {
+        title: "Limites et suites possibles",
+        paragraphs: [
+          "Le périmètre a été volontairement restreint pour garantir la fiabilité du MVP. Plusieurs extensions sont identifiées pour une version ultérieure.",
+        ],
+        bullets: [
+          "Catalogue d'algorithmes Processing encore limité à une liste blanche réduite",
+          "Pas de gestion multi-utilisateurs ni d'accès distant",
+          "Mise en page et export cartographique non couverts",
+          "Journalisation à enrichir pour un usage en production",
         ],
       },
     ],
