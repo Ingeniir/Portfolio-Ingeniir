@@ -42,7 +42,7 @@ export const internshipDetails = [
   },
   {
     label: "Domaines",
-    value: "Développement, analyse de données, intelligence artificielle, économétrie et marketing analytics/études de marché",
+    value: "Développement, analyse de données, intelligence artificielle, économétrie, études de marché et marketing analytique",
   },
   {
     label: "Localisation",
@@ -50,6 +50,6 @@ export const internshipDetails = [
   },
   {
     label: "Période",
-    value: "Pour les vacances d'hiver, c'est-à-dire pour le mois de Décembre. Sinon durant ma période scolaire mais reste à voir selon mon emploi du temps.",
+    value: "19 décembre au 19 janvier.",
   },
 ];

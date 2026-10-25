@@ -7,6 +7,7 @@ export interface ProjectSection {
 export interface Project {
   slug: string;
   title: string;
+  subtitle?: string;
   summary: string;
   description: string;
   status: string;
@@ -241,7 +242,8 @@ export const projects: Project[] = [
   },
   {
     slug: "cynogis",
-    title: "Cynogis — Pilotage de QGIS par une IA via Model Context Protocol",
+    title: "Cynogis",
+    subtitle: "Pilotage de QGIS par une IA via Model Context Protocol",
     summary:
       "Plugin QGIS et serveur MCP permettant à un assistant IA de piloter QGIS de façon encadrée : une centaine d'outils métier (géotraitements, édition, analyse paysagère, biodiversité, zonages réglementaires, cartographie), avec niveaux de permission, tampon d'édition et confirmation humaine.",
     description:
